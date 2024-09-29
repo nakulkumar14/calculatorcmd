@@ -7,74 +7,68 @@ public class Main {
     public static void main(String[] args) {
         // addition, subtraction, multiplication and division.
         Scanner input = new Scanner(System.in);
-        String message = """
-                Please enter your choice:
-                1. Addition
-                2. Subtraction
-                3. Multiplication
-                4. Division
-                5. Clear last stored result
-                0. Exit
-                """;
+        Calculator calculator = CalculatorFactory.getCalculator(CalcType.STANDARD);
         int choice = -1;
-        boolean reset = true;
-        int result = 0;
         do {
-            System.out.println(message);
+            calculator.displayFunctions();
             choice = input.nextInt();
-            int a = 0, b = 0;
+            double a = 0, b = 0;
             switch (choice) {
                 case 1:
-                    if (reset) {
-                        a = input.nextInt();
-                        reset = false;
+                    if (calculator.isReset()) {
+                        a = input.nextDouble();
+                        calculator.setA(a);
+                        calculator.setReset(false);
                     } else {
-                        a = result;
+                        calculator.setA(calculator.getResult());
                     }
-                    b = input.nextInt();
-                    result = a + b;
-                    System.out.println("Sum of a : " + a + " and b : " + b + " = " + result);
+                    b = input.nextDouble();
+                    calculator.setB(b);
+                    calculator.addition();
                     break;
                 case 2:
-                    if (reset) {
-                        a = input.nextInt();
-                        reset = false;
-                    } else{
-                        a = result;
+                    if (calculator.isReset()) {
+                        a = input.nextDouble();
+                        calculator.setA(a);
+                        calculator.setReset(false);
+                    } else {
+                        calculator.setA(calculator.getResult());
                     }
-                    b = input.nextInt();
-                    result = a - b;
-                    System.out.println("Subtraction of a : " + a + " and b : " + b + " = " + result);
+                    b = input.nextDouble();
+                    calculator.setB(b);
+                    calculator.subtraction();
                     break;
                 case 3:
-                    if (reset) {
-                        a = input.nextInt();
-                        reset = false;
-                    } else{
-                        a = result;
+                    if (calculator.isReset()) {
+                        a = input.nextDouble();
+                        calculator.setA(a);
+                        calculator.setReset(false);
+                    } else {
+                        calculator.setA(calculator.getResult());
                     }
-                   b = input.nextInt();
-                   result = a * b;
-                   System.out.println("Multiplication of a : " + a + " and b : " + b + " = " + result);
+                    b = input.nextDouble();
+                    calculator.setB(b);
+                    calculator.multiplication();
                     break;
                 case 4:
-                    if (reset) {
-                        a = input.nextInt();
-                        reset = false;
-                    } else{
-                        a = result;
+                    if (calculator.isReset()) {
+                        a = input.nextDouble();
+                        calculator.setA(a);
+                        calculator.setReset(false);
+                    } else {
+                        calculator.setA(calculator.getResult());
                     }
-                    b = input.nextInt();
+                    b = input.nextDouble();
+                    calculator.setB(b);
                     if (b == 0) {
                         System.out.println("Division by zero not allowed!!");
                     } else {
-                        result = a / b;
-                        System.out.println("Division of a : " + a + " and b : " + b + " = " + result);
+                        calculator.division();
                     }
                     break;
                 case 5:
-                    result = 0;
-                    reset = true;
+                    calculator.setResult(0);
+                    calculator.setReset(true);
                     break;
                 default:
                     if (choice != 0) {
