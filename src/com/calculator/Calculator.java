@@ -1,12 +1,16 @@
 package com.calculator;
 
+import java.util.Scanner;
+
 public abstract class Calculator {
     private double result;
     private double a;
     private double b;
     private boolean reset;
+    protected final Scanner input;
 
     public Calculator(double result, double a, double b, boolean reset) {
+        input = new Scanner(System.in);
         this.result = result;
         this.a = a;
         this.b = b;
@@ -14,6 +18,8 @@ public abstract class Calculator {
     }
 
     public abstract void displayFunctions();
+
+    public abstract void displayMenu();
 
     public double getResult() {
         return result;
@@ -47,20 +53,40 @@ public abstract class Calculator {
         this.reset = reset;
     }
 
-    protected double addition() {
-        return operation('+');
+    public void performAddition() {
+        inputOperands();
+        operation('+');
     }
 
-    protected double subtraction() {
-        return operation('-');
+    public void performSubtraction() {
+        inputOperands();
+        operation('-');
     }
 
-    protected double multiplication() {
-        return operation('*');
+    public void performMultiplication() {
+        inputOperands();
+        operation('*');
     }
 
-    protected double division() {
-        return operation('/');
+    public void performDivision() {
+        inputOperands();
+        if (b == 0) {
+            System.out.println("Division by zero not allowed!!");
+        } else {
+            operation('/');
+        }
+    }
+
+    protected void inputOperands() {
+        if (isReset()) {
+            a = input.nextDouble();
+            setA(a);
+            setReset(false);
+        } else {
+            setA(getResult());
+        }
+        b = input.nextDouble();
+        setB(b);
     }
 
     private double operation(char op) {

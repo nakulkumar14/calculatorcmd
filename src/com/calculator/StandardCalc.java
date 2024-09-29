@@ -20,4 +20,35 @@ public class StandardCalc extends Calculator {
     public void displayFunctions() {
         System.out.println(MESSAGE);
     }
+
+    @Override
+    public void displayMenu() {
+        int choice = -1;
+        do {
+            displayFunctions();
+            choice = input.nextInt();
+            switch (choice) {
+                case 1:
+                    performAddition();
+                    break;
+                case 2:
+                    performSubtraction();
+                    break;
+                case 3:
+                    performMultiplication();
+                    break;
+                case 4:
+                    performDivision();
+                    break;
+                case 5:
+                    setResult(0);
+                    setReset(true);
+                    break;
+                default:
+                    if (choice != 0) {
+                        System.out.println("Invalid choice");
+                    }
+            }
+        } while (choice != 0);
+    }
 }

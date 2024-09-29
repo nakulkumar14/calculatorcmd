@@ -1,5 +1,6 @@
 package com.calculator;
 
 public enum CalcType {
-    STANDARD
+    STANDARD,
+    SCIENTIFIC
 }

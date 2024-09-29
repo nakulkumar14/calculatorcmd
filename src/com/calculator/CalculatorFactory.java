@@ -6,6 +6,9 @@ public class CalculatorFactory {
             case STANDARD -> {
                 return new StandardCalc(0, 0, 0, true);
             }
+            case SCIENTIFIC -> {
+                return new ScientificCalc(0, 0, 0, true);
+            }
             default -> throw new IllegalArgumentException("Unknown calculator type");
         }
     }
