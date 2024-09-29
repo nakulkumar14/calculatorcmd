@@ -9,6 +9,9 @@ public class CalculatorFactory {
             case SCIENTIFIC -> {
                 return new ScientificCalc(0, 0, 0, true);
             }
+            case PROGRAMMER -> {
+                return new ProgrammerCalc(0, 0, 0, true);
+            }
             default -> throw new IllegalArgumentException("Unknown calculator type");
         }
     }

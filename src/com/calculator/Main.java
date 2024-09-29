@@ -11,6 +11,7 @@ public class Main {
                 Please select calculator from below:
                 1. Standard
                 2. Scientific
+                3. Programmer
                 0. Exit
                 """;
         Calculator calculator = null;
@@ -23,6 +24,8 @@ public class Main {
                     return CalculatorFactory.getCalculator(CalcType.STANDARD);
                 case 2:
                     return CalculatorFactory.getCalculator(CalcType.SCIENTIFIC);
+                case 3:
+                    return CalculatorFactory.getCalculator(CalcType.PROGRAMMER);
                 default:
                     if (in != 0) {
                         System.out.println("Invalid choice");

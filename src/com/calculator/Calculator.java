@@ -17,7 +17,9 @@ public abstract class Calculator {
         this.reset = reset;
     }
 
-    public abstract void displayFunctions();
+    public void displayFunctions(String message) {
+        System.out.println(message);
+    }
 
     public abstract void displayMenu();
 
@@ -78,6 +80,12 @@ public abstract class Calculator {
     }
 
     protected void inputOperands() {
+        inputSingleOperand();
+        b = input.nextDouble();
+        setB(b);
+    }
+
+    protected void inputSingleOperand() {
         if (isReset()) {
             a = input.nextDouble();
             setA(a);
@@ -85,8 +93,6 @@ public abstract class Calculator {
         } else {
             setA(getResult());
         }
-        b = input.nextDouble();
-        setB(b);
     }
 
     private double operation(char op) {

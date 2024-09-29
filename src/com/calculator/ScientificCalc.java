@@ -12,6 +12,8 @@ public class ScientificCalc extends Calculator {
             6. 1/x
             7. n!
             8. x^y (x to power of y)
+            9. Square root of x
+            10. Log
             11. Clear last stored result
             0. Exit
             """;
@@ -21,15 +23,10 @@ public class ScientificCalc extends Calculator {
     }
 
     @Override
-    public void displayFunctions() {
-        System.out.println(MESSAGE);
-    }
-
-    @Override
     public void displayMenu() {
         int choice = -1;
         do {
-            displayFunctions();
+            displayFunctions(MESSAGE);
             choice = input.nextInt();
             switch (choice) {
                 case 1:
@@ -45,22 +42,27 @@ public class ScientificCalc extends Calculator {
                     performDivision();
                     break;
                 case 5:
-                    setA(input.nextDouble());
-                    setReset(false);
+                    inputSingleOperand();
                     modX(getA());
                     break;
                 case 6:
-                    setA(input.nextDouble());
-                    setReset(false);
+                    inputSingleOperand();
                     reciprocal(getA());
                     break;
                 case 7:
-                    setA(input.nextDouble());
+                    inputSingleOperand();
                     factorial(getA());
-                    setReset(false);
                     break;
                 case 8:
                     power();
+                    break;
+                case 9:
+                    inputSingleOperand();
+                    squareRoot(getA());
+                    break;
+                case 10:
+                    inputSingleOperand();
+                    log(getA());
                     break;
                 case 11:
                     setResult(0);
@@ -72,6 +74,16 @@ public class ScientificCalc extends Calculator {
                     }
             }
         } while (choice != 0);
+    }
+
+    private void log(double a) {
+        setResult(Math.log(a));
+        System.out.println("Result: " + getResult());
+    }
+
+    private void squareRoot(double a) {
+        setResult(Math.sqrt(a));
+        System.out.println("Square root of " + a + " is " + getResult());
     }
 
     private void power() {

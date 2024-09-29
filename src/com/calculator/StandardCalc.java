@@ -17,15 +17,10 @@ public class StandardCalc extends Calculator {
     }
 
     @Override
-    public void displayFunctions() {
-        System.out.println(MESSAGE);
-    }
-
-    @Override
     public void displayMenu() {
         int choice = -1;
         do {
-            displayFunctions();
+            displayFunctions(MESSAGE);
             choice = input.nextInt();
             switch (choice) {
                 case 1:
